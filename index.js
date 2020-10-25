@@ -1,3 +1,6 @@
+const askEmployee= require("./questions/askEmployee.js");
+
+
 var mysql = require("mysql");
 
 var connection = mysql.createConnection({
@@ -23,8 +26,9 @@ connection.connect(function(err) {
   function afterConnection() {
     //connection.query("SELECT * FROM products", function(err, res) {
      // if (err) throw err;
-      console.log("questions");
-      connection.end();
+     askEmployee();
+    console.log("questions");
+     // connection.end();
     //});
   }
   
