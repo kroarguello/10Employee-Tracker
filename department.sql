@@ -26,18 +26,18 @@ CREATE DATABASE department_db;
 USE department_db;
 
 CREATE TABLE department(
-    id INTEGER AUTO_INCREMENT NULL, 
+    id INTEGER AUTO_INCREMENT NOT NULL, 
     name VARCHAR(30) NOT NULL,
     PRIMARY KEY(id)
     );
 
 
-CREATE TABLE role(
+CREATE TABLE roles(
    id INTEGER AUTO_INCREMENT NOT NULL,
    title VARCHAR(30),
    salary DECIMAL,
    department_id INT NOT NULL,
-   FOREING KEY (department_id) REFERENCES department(id),
+   FOREIGN KEY (department_id) REFERENCES department(id),
    PRIMARY KEY (id)
 );
 
@@ -47,6 +47,11 @@ first_name VARCHAR(30) NOT NULL,
 last_name VARCHAR(30) NOT NULL,
 role_id INT NOT NULL,
 manager_id INT,
-FOREIGN KEY (role_id) REFERENCES role(id),
+FOREIGN KEY (role_id) REFERENCES roles(id),
 PRIMARY KEY(id)
 );
+
+INSERT INTO department(name) VALUES ("KITCHEN");
+INSERT INTO roles (title, salary, department_id) VALUES ("Cook 1", 25.00 , 1);
+INSERT INTO employee (first_name,last_name,role_id, manager_id) VALUES ("Alejandro","Martinez", 1, 1)
+

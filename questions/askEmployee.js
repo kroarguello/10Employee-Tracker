@@ -10,7 +10,7 @@ const viewBudget= require("./viewBudget.js");
 
 
 
-function askEmployee() {
+function askEmployee(connection) {
  //return console.log ("pagina 2");
   inquirer
   .prompt([
@@ -33,38 +33,34 @@ function askEmployee() {
   ])
   .then(answer => { 
     
-    if (answer.question === "View Employee") {
-     // console.log("view");
+    if (answer.question === "View Employee") {  
       viewEmployee();
     }
 
     if (answer.question === "Add Employee") {            
-      // console.log("add");
-       addEmployee();
+      addEmployee();
     }
 
     if (answer.question === "Update Employee") {
-      //console.log("update");
       updateEmployee();
     }
     
     if (answer.question === "Delete Employee") {
-      //console.log("delete");
       deleteEmployee();
     }
+
     if (answer.question === "Add department") {
-      //console.log("delete");
-      addDepartment();
+      addDepartment(connection);
     }
+
     if (answer.question === "Add Role") {
-      //console.log("delete");
       addRole();
     }
 
     if (answer.question === "View Budget by Department") {
-      //console.log("budget");
       viewBudget();
     }
+
     if (answer.question === "Exit") {
       console.log("Thank you see you next time");
       //connection.end();

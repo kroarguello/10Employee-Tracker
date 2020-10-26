@@ -7,14 +7,13 @@ const connection = mysql.createConnection({
   port: 3306,  // Your port; if not 3306
   user: "root", // Your username
   password: "Mishi*20",  // Your password
-  database: "ice_creamDB" //Data Base 
+  database: "department_db" //Data Base 
 });
 
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
-    //afterConnection();
-    askEmployee();
+    askEmployee(connection);
   });
   
   

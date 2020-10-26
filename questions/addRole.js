@@ -21,8 +21,8 @@ inquirer
     }
 
   ])
-  .then(
-      console.log("listo")// moverlo a async
+  .then( 
+      
   )
 
 

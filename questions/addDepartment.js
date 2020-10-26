@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
-
-function addDepartment(){
+const askEmployee = require("./askEmployee");
+const 
+function addDepartment(connection){
   //  return console.log("adding employeee");
 inquirer
   .prompt([
@@ -10,8 +11,16 @@ inquirer
         message: "Name of the department"       
     }
   ])
-  .then(
-      console.log("listo")// moverlo a async
+  .then( answer => {
+
+      connection.query = ("INSERT department(name) VALUE (?)" , answer.name, function(err,res){
+          if(err)throw err;
+          console.log("Department added")
+          //askEmployee();
+        })
+      
+
+  }
   )
 
 
