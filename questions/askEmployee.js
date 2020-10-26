@@ -50,7 +50,7 @@ function askEmployee(connection) {
     }
 
     if (answer.question === "Add department") {
-      addDepartment(connection);
+      addDepartment();
     }
 
     if (answer.question === "Add Role") {

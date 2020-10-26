@@ -1,7 +1,9 @@
 const inquirer = require("inquirer");
 const askEmployee = require("./askEmployee");
-const 
-function addDepartment(connection){
+const index = require("../index.js");
+
+
+function addDepartment(){
   //  return console.log("adding employeee");
 inquirer
   .prompt([
