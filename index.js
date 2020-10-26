@@ -1,34 +1,29 @@
 const askEmployee= require("./questions/askEmployee.js");
 
+const mysql = require("mysql");
 
-var mysql = require("mysql");
-
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: "localhost",
-
-  // Your port; if not 3306
-  port: 3306,
-
-  // Your username
-  user: "root",
-
-  // Your password
-  password: "Mishi*20",
-  database: "ice_creamDB"
+  port: 3306,  // Your port; if not 3306
+  user: "root", // Your username
+  password: "Mishi*20",  // Your password
+  database: "ice_creamDB" //Data Base 
 });
 
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
-    afterConnection();
+    //afterConnection();
+    askEmployee();
   });
   
-  function afterConnection() {
+  /*function afterConnection() {
     //connection.query("SELECT * FROM products", function(err, res) {
      // if (err) throw err;
      askEmployee();
-    console.log("questions");
+    //console.log("questions");
      // connection.end();
     //});
   }
+*/
   
