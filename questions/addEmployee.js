@@ -7,22 +7,44 @@ inquirer
   .prompt([
     {
         type: "input",
-        name: "question",
-        message: "What do you like to do"       
+        name: "name",
+        message: "What is the name of the employee"       
+    },
+    {
+        type: "input",
+        name: "lastName",
+        message: "What is the last Name"       
+    },
+    {
+        type: "input",
+        name: "department",
+        message: "What is the department"       
+    },
+    {
+        type: "input",
+        name: "title",
+        message: "What is the title"       
+    },
+    {
+        type: "input",
+        name: "role",
+        message: "What is the role"       
     }, 
     {
-      type: "list",
-      name: "question",
-      message: "What do you like to do",
-      choices: [
-        "View Employee",
-        "Add Employee",
-        "Exit"
-      ]
-
+        type: "input",
+        name: "salary",
+        message: "What is the Salary"       
+    },
+    {
+        type: "input",
+        name: "manager",
+        message: "What is the Manager Id"       
     }
+
   ])
-  .then()
+  .then(
+      console.log("listo")// moverlo a async
+  )
 
 
 }
