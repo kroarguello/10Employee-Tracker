@@ -25,17 +25,7 @@ inquirer
         name: "title",
         message: "What is the title"       
     },
-    {
-        type: "input",
-        name: "role",
-        message: "What is the role"       
-    }, 
-    {
-        type: "input",
-        name: "salary",
-        message: "What is the Salary"       
-    },
-    {
+     {
         type: "input",
         name: "manager",
         message: "What is the Manager Id"       

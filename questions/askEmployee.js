@@ -3,6 +3,8 @@ const addEmployee= require("./addEmployee.js");
 const deleteEmployee= require("./deleteEmployee.js");
 const updateEmployee= require("./updateEmployee.js");
 const viewEmployee= require("./viewEmployee.js");
+const addDepartment = require('./addDepartment.js');
+const addRole = require("./addRole.js");
 const viewBudget= require("./viewBudget.js");
 
 
@@ -21,6 +23,8 @@ function askEmployee() {
         "Add Employee",
         "Update Employee",
         "Delete Employee",
+        "Add department",
+        "Add Role",
         "View Budget by Department",
         "Exit"
       ]
@@ -47,6 +51,14 @@ function askEmployee() {
     if (answer.question === "Delete Employee") {
       //console.log("delete");
       deleteEmployee();
+    }
+    if (answer.question === "Add department") {
+      //console.log("delete");
+      addDepartment();
+    }
+    if (answer.question === "Add Role") {
+      //console.log("delete");
+      addRole();
     }
 
     if (answer.question === "View Budget by Department") {

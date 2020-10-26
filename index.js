@@ -17,13 +17,5 @@ connection.connect(function(err) {
     askEmployee();
   });
   
-  /*function afterConnection() {
-    //connection.query("SELECT * FROM products", function(err, res) {
-     // if (err) throw err;
-     askEmployee();
-    //console.log("questions");
-     // connection.end();
-    //});
-  }
-*/
+  
   
