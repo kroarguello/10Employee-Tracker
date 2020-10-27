@@ -90,6 +90,15 @@ async function addDepartment() {
         connection.query("INSERT INTO department (name) VALUES ('" + department.name + "')", (err, res) =>{
         if (err) throw err;
       })
+
+  //show Department    
+       connection.query("SELECT name FROM department ORDER BY id", function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        askEmployee();
+    })    
+
+      
 }
 
 //Adding Role
@@ -129,6 +138,17 @@ async function addRole() {
       connection.query("INSERT INTO roles (title, salary,department_id) VALUES ('" + role.title + "','"+ role.salary + "','"+ departments[index].id +"')", (err, res) =>{
         if (err) throw err;
       })
+
+
+//show Role
+  connection.query("SELECT title, salary, department_id FROM roles ORDER BY id", function (err, res) {
+  if (err) throw err;
+  console.table(res);
+  askEmployee();
+})
+
+
+
 }
  
 
@@ -175,6 +195,17 @@ async function addEmployee() {
       connection.query("INSERT INTO employee (first_name, last_name,role_id, manager_id) VALUES ('" + employee.name + "','"+ employee.lastName + "','"+ roles[index].id +"','"+ employee.manager + "')", (err, res) =>{
         if (err) throw err;
       })
+      viewEmployee();
 }
+
+//View employee
+function viewEmployee(){
+  connection.query("SELECT employee.id, employee.first_name, employee.last_name, roles.title, roles.salary, employee.manager_id, department.name AS department FROM employee LEFT JOIN roles ON employee.role_id=roles.id LEFT JOIN department ON roles.department_id=department.id LEFT JOIN employee manager ON manager.id = employee.manager_id", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    askEmployee();
+})
+}
+
 
 
