@@ -256,11 +256,41 @@ async function updateEmployee(){
   console.log(allEmployees.indexOf(employee.employeeName));
   console.log(allRoles.indexOf(employee.role_id));
   
-  //console.log (allRoles[indexTitle].id);
-  //console.log (allEmployees[indexEmployee].id); 
- connection.query("UPDATE employee SET role_id="+ roles[indexTitle].id +" WHERE id="+ employees[indexEmployee].id, (err,res) =>{
+   connection.query("UPDATE employee SET role_id="+ roles[indexTitle].id +" WHERE id="+ employees[indexEmployee].id, (err,res) =>{
     if (err) throw err;
     viewEmployee()        
   });     
+
+}
+
+
+//Delete employee
+async function deleteEmployee(){
+ //employee to update
+ const employees = await new Promise(resolve => {
+  connection.query("SELECT * FROM employee", (err, res) => {
+        if (err) throw err;
+        resolve(res);
+    })
+})
+
+  let  allEmployees = [];
+  employees.forEach(element => {
+  allEmployees.push(element.first_name + "    " + element.last_name);
+})
+const employee = await inquirer.prompt([
+  {
+    type: "list",
+    name: "employeeName",
+    message: "Which Employee do you want to update",
+    choices: allEmployees       
+}
+])
+const indexEmployee = allEmployees.indexOf(employee.employeeName);
+connection.query("DELETE FROM employee  WHERE id="+ employees[indexEmployee].id, (err,res) =>{
+  if (err) throw err;
+  viewEmployee()        
+});     
+
 
 }
