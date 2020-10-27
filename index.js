@@ -29,7 +29,7 @@ function askEmployee() {
         choices: [
           "View Employee",
           "Add Employee",
-          "Update Employee",
+          "Update Title of Employee",
           "Delete Employee",
           "Add department",
           "Add Role",
@@ -50,7 +50,7 @@ function askEmployee() {
         addEmployee();
       }
 
-      if (answer.question === "Update Employee") {
+      if (answer.question === "Update Title of Employee") {
         updateEmployee();
       }
 
@@ -207,5 +207,60 @@ function viewEmployee(){
 })
 }
 
+//update Employee by Title
+async function updateEmployee(){
+  // Title to update
+  const roles = await new Promise(resolve => {
+    connection.query("SELECT * FROM roles", (err, res) => {
+          if (err) throw err;
+          resolve(res);
+      })
+  })
+    let  allRoles = [];
+    roles.forEach(element => {
+    allRoles.push(element.title);
+  })
+
+  //employee to update
+  const employees = await new Promise(resolve => {
+    connection.query("SELECT * FROM employee", (err, res) => {
+          if (err) throw err;
+          resolve(res);
+      })
+  })
+
+    let  allEmployees = [];
+    employees.forEach(element => {
+    allEmployees.push(element.first_name + "    " + element.last_name);
+  })
 
 
+  const employee = await inquirer.prompt([
+    {
+      type: "list",
+      name: "employeeName",
+      message: "Which Employee do you want to update",
+      choices: allEmployees       
+  },  
+    {
+        type: "list",
+        name: "role_id",
+        message: "What is the New Title ",
+        choices: allRoles       
+    }
+
+  ])
+
+  const indexTitle = allRoles.indexOf(employee.role_id);
+  const indexEmployee = allEmployees.indexOf(employee.employeeName);
+  console.log(allEmployees.indexOf(employee.employeeName));
+  console.log(allRoles.indexOf(employee.role_id));
+  
+  //console.log (allRoles[indexTitle].id);
+  //console.log (allEmployees[indexEmployee].id); 
+ connection.query("UPDATE employee SET role_id="+ roles[indexTitle].id +" WHERE id="+ employees[indexEmployee].id, (err,res) =>{
+    if (err) throw err;
+    viewEmployee()        
+  });     
+
+}
