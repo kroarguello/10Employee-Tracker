@@ -31,7 +31,7 @@ function askEmployee() {
           "Update Title of Employee",
           "Delete Employee",
           "Add department",
-          "Add Role",
+          "Add Title",
           "View Budget by Department",
           "Exit"
         ]
@@ -53,7 +53,7 @@ function askEmployee() {
       if (answer.question === "Add department") {
         addDepartment();
       }
-      if (answer.question === "Add Role") {
+      if (answer.question === "Add Title") {
         addRole();
       }
       if (answer.question === "View Budget by Department") {
@@ -65,7 +65,6 @@ function askEmployee() {
       }
     })
 }
-
 
 async function addDepartment() {
   const department = await inquirer.prompt([
@@ -301,9 +300,9 @@ connection.query("SELECT employee.first_name, employee.last_name, roles.title, r
 
 connection.query("SELECT SUM(roles.salary) AS department FROM employee LEFT JOIN roles ON employee.role_id=roles.id LEFT JOIN department ON roles.department_id=department.id WHERE department.id=" + depart[index].id, (err, res) => {
   if (err) throw err;
+  console.log ("Total Budget by Department");
   console.table(res);  
   
 });
-
-
+askEmployee();
 }
