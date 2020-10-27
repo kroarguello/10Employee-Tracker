@@ -53,6 +53,7 @@ function askEmployee() {
       if (answer.question === "Add department") {
         addDepartment();
       }
+      
       if (answer.question === "Add Title") {
         addRole();
       }
