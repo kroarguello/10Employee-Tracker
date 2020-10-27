@@ -1,8 +1,8 @@
-const inquirer = require("inquirer");
-const askEmployee = require("./askEmployee");
-const index = require("../index.js");
+//const inquirer = require("inquirer");
+//const askEmployee = require("./askEmployee");
+//const index = require("../index.js");
 
-
+/*
 function addDepartment(){
   //  return console.log("adding employeee");
 inquirer
@@ -13,9 +13,9 @@ inquirer
         message: "Name of the department"       
     }
   ])
-  .then( answer => {
+  .then( function(answer, connection){
 
-      connection.query = ("INSERT department(name) VALUE (?)" , answer.name, function(err,res){
+      connection.query = ("INSERT department VALUE (?)" , answer.name, function(err,res){
           if(err)throw err;
           console.log("Department added")
           //askEmployee();
@@ -28,4 +28,4 @@ inquirer
 
 }
 
-module.exports = addDepartment;
+module.exports = addDepartment;*/

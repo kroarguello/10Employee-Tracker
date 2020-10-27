@@ -1,4 +1,4 @@
-const inquirer = require("inquirer");
+/*const inquirer = require("inquirer");
 const addEmployee= require("./addEmployee.js");
 const deleteEmployee= require("./deleteEmployee.js");
 const updateEmployee= require("./updateEmployee.js");
@@ -69,4 +69,4 @@ function askEmployee(connection) {
 }
 
 
-module.exports = askEmployee;
+module.exports = askEmployee;*/
