@@ -131,4 +131,50 @@ async function addRole() {
       })
 }
  
-  
+
+//Add Employee
+
+async function addEmployee() {
+  const roles = await new Promise(resolve => {
+  connection.query("SELECT * FROM roles", (err, res) => {
+        if (err) throw err;
+        resolve(res);
+    })
+})
+  let  allRoles = [];
+  roles.forEach(element => {
+  allRoles.push(element.title);
+})
+
+  const employee = await inquirer.prompt([
+    {
+      type: "input",
+      name: "name",
+      message: "What is the name of the employee"       
+  },
+  {
+      type: "input",
+      name: "lastName",
+      message: "What is the last Name"       
+  },
+   {
+      type: "input",
+      name: "manager",
+      message: "What is the Manager Id"       
+  },
+  {
+        type: "list",
+        name: "role_id",
+        message: "What is the title",
+        choices: allRoles       
+    }
+
+  ])
+     
+      const index = allRoles.indexOf(employee.role_id);
+      connection.query("INSERT INTO employee (first_name, last_name,role_id, manager_id) VALUES ('" + employee.name + "','"+ employee.lastName + "','"+ roles[index].id +"','"+ employee.manager + "')", (err, res) =>{
+        if (err) throw err;
+      })
+}
+
+
