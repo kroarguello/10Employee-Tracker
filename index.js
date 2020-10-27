@@ -18,7 +18,7 @@ connection.connect(function (err) {
  });
 
 
-
+//Main Questions
 function askEmployee() {
   inquirer
     .prompt([
@@ -92,6 +92,43 @@ async function addDepartment() {
       })
 }
 
+//Adding Role
+async function addRole() {
+  const departments = await new Promise(resolve => {
+  connection.query("SELECT * FROM department", (err, res) => {
+        if (err) throw err;
+        resolve(res);
+    })
+})
+  let  allDepartments = [];
+  departments.forEach(element => {
+  allDepartments.push(element.name);
+})
 
+  const role = await inquirer.prompt([
+    {
+        type: "input",
+        name: "title",
+        message: "What is the title"       
+    },
+    {
+        type: "input",
+        name: "salary",
+        message: "How much is the salary"       
+    },
+    {
+        type: "list",
+        name: "department_id",
+        message: "What is the department",
+        choices: allDepartments       
+    }
+
+  ])
+     
+      const index = allDepartments.indexOf(role.department_id);
+      connection.query("INSERT INTO roles (title, salary,department_id) VALUES ('" + role.title + "','"+ role.salary + "','"+ departments[index].id +"')", (err, res) =>{
+        if (err) throw err;
+      })
+}
  
   
